@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>For You 💚</title>
+    <link rel="stylesheet" href="style_2.css">
+</head>
+
+<body>
+
+<div class="overlay"></div>
+
+<div class="center" id="center">
+
+    <!-- HEART -->
+    <div class="heart" id="heart">💚</div>
+
+    <!-- PARTICLES -->
+    <div class="letters" id="letters"></div>
+
+    <!-- FINAL ENVELOPE -->
+    <div class="final-envelope" id="finalEnvelope">✉️</div>
+
+    <!-- OPEN ENVELOPE -->
+    <div class="envelope" id="envelope">
+        <div class="flap"></div>
+        <div class="letter">
+            <p id="text"></p>
+        </div>
+        <div class="seal">❤️</div>
+    </div>
+
+</div>
+
+<script>
+const heart = document.getElementById("heart");
+const letters = document.getElementById("letters");
+const finalEnvelope = document.getElementById("finalEnvelope");
+const envelope = document.getElementById("envelope");
+const text = document.getElementById("text");
+
+/* UPDATED MESSAGE */
+const message = `hey cscscscs...!!
+wanted you say you something...
+you  are a H!!!!
+just kidding...
+Happy Birthday dear...
+you mean a lot to me❤️`;
+
+/* CLICK HEART */
+heart.addEventListener("click", () => {
+    heart.classList.add("shake");
+
+    setTimeout(() => {
+        const rect = heart.getBoundingClientRect();
+        const startX = rect.left + rect.width / 2;
+        const startY = rect.top + rect.height / 2;
+
+        heart.style.display = "none";
+
+        explode(startX, startY);
+    }, 800);
+});
+
+/* EXPLOSION */
+function explode(x, y) {
+    for (let i = 0; i < 500; i++) {
+        let span = document.createElement("span");
+        span.innerText = "✉️";
+
+        span.style.left = x + "px";
+        span.style.top = y + "px";
+
+        letters.appendChild(span);
+
+        let randomX = (Math.random() - 0.5) * window.innerWidth;
+        let randomY = (Math.random() - 0.5) * window.innerHeight;
+
+        setTimeout(() => {
+            span.style.transform = `translate(${randomX}px, ${randomY}px)`;
+            span.style.opacity = "1";
+        }, 10);
+    }
+
+    setTimeout(() => gather(x, y), 1500);
+}
+
+/* GATHER BACK */
+function gather(x, y) {
+    const all = letters.querySelectorAll("span");
+
+    all.forEach(span => {
+        span.style.transform = `translate(0px, 0px)`;
+        span.style.left = x + "px";
+        span.style.top = y + "px";
+    });
+
+    setTimeout(() => {
+        letters.innerHTML = "";
+        finalEnvelope.style.display = "block";
+    }, 1000);
+}
+
+/* FINAL CLICK */
+finalEnvelope.addEventListener("click", () => {
+    finalEnvelope.style.display = "none";
+    envelope.classList.add("open");
+    typeWriter(message);
+});
+
+/* TYPEWRITER (FIXED FOR LINE BREAKS) */
+function typeWriter(str) {
+    let i = 0;
+    function typing() {
+        if (i < str.length) {
+            if (str.charAt(i) === "\n") {
+                text.innerHTML += "<br>";
+            } else {
+                text.innerHTML += str.charAt(i);
+            }
+            i++;
+            setTimeout(typing, 35);
+        }
+    }
+    typing();
+}
+</script>
+
+</body>
+</html>

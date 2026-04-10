@@ -1,0 +1,224 @@
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    background: url("marsh.png") no-repeat center/cover;
+}
+
+/* OVERLAY */
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+}
+
+/* CENTER */
+.center {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* HEART */
+.heart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 90px;
+    cursor: pointer;
+    animation: beat 1.2s infinite;
+    z-index: 2;
+}
+
+@keyframes beat {
+    0%,100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.2); }
+}
+
+.shake {
+    animation: shake 0.8s;
+}
+
+@keyframes shake {
+    0% { transform: translate(-50%, -50%) translate(0,0); }
+    25% { transform: translate(-50%, -50%) translate(30px,-20px); }
+    50% { transform: translate(-50%, -50%) translate(-30px,20px); }
+    75% { transform: translate(-50%, -50%) translate(20px,-10px); }
+    100% { transform: translate(-50%, -50%) translate(0,0); }
+}
+
+/* PARTICLES */
+.letters {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.letters span {
+    position: absolute;
+    font-size: 24px;
+    opacity: 0;
+    transition: transform 1.5s ease, opacity 0.3s;
+}
+
+/* FINAL ENVELOPE */
+.final-envelope {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 80px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+/* ENVELOPE BASE */
+.envelope {
+    display: none;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.7);
+    width: 340px;
+    height: 240px;
+    z-index: 2;
+
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+/* OPEN STATE */
+.envelope.open {
+    display: block;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    animation: popIn 0.6s ease-out;
+}
+
+@keyframes popIn {
+    0% {
+        transform: translate(-50%, -50%) scale(0.4);
+        opacity: 0;
+    }
+    60% {
+        transform: translate(-50%, -50%) scale(1.08);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* FLAP */
+.flap {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: white;
+    clip-path: polygon(0 0, 50% 50%, 100% 0);
+}
+
+/* LETTER */
+.letter {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 25px;
+    box-sizing: border-box;
+
+    border-radius: 18px;
+
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+
+    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+    backdrop-filter: blur(6px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+    overflow: hidden;
+}
+
+/* TEXT */
+#text {
+    font-family: 'Caveat', cursive;
+    font-size: 20px;
+    color: #ffffff;
+    text-align: center;
+    line-height: 1.6;
+
+    text-shadow: 0 0 8px rgba(255,255,255,0.5);
+    opacity: 0;
+}
+
+/* TEXT FADE-IN */
+.envelope.open #text {
+    animation: textFade 1s ease forwards;
+}
+
+@keyframes textFade {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================= */
+/* SIDE HEART BORDER (FIXED) */
+/* ============================= */
+
+.letter::before,
+.letter::after {
+    content: "💗 💖 💕 💞 💓 💗 💖 💕 💞 💓 💗 💖 💕 💞 💓";
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+
+    width: 40px;
+
+    font-size: 16px;
+    line-height: 28px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-around;
+    align-items: center;
+
+    opacity: 0.7;
+    animation: floatHearts 6s linear infinite;
+}
+
+/* LEFT SIDE */
+.letter::before {
+    left: 0;
+}
+
+/* RIGHT SIDE */
+.letter::after {
+    right: 0;
+}
+
+/* VERTICAL MOVEMENT */
+@keyframes floatHearts {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+/* OPTIONAL SEAL (REMOVED HEART ISSUE FIX) */
+.seal {
+    display: none;
+}

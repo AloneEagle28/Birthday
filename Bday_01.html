@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Birthday Card</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Caveat&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style_1.css">
+</head>
+<body>
+
+<!-- Ribbons background -->
+<div class="ribbons"></div>
+
+<!-- Main content -->
+<div class="container">
+    <div class="card">
+        <div class="cake">🎂</div>
+        <h1>Happy Birthday!</h1>
+        <p>Happy Birthday my Love!</p>
+    </div>
+
+    <button class="btn" onclick="goNext()">Click Me</button>
+</div>
+
+<script>
+function goNext() {
+    window.location.href = "next_2.html";
+}
+
+/* Ribbon generator */
+const colors = ["#ff4d4d","#ffd11a","#33cc33","#3399ff","#cc33ff","#ff66cc"];
+const container = document.querySelector(".ribbons");
+
+for (let i = 0; i < 60; i++) {
+    let ribbon = document.createElement("div");
+    ribbon.classList.add("ribbon");
+
+    ribbon.style.left = Math.random() * 100 + "vw";
+    ribbon.style.background = colors[Math.floor(Math.random() * colors.length)];
+    ribbon.style.animationDuration = (3 + Math.random() * 3) + "s";
+    ribbon.style.animationDelay = Math.random() * 5 + "s";
+    ribbon.style.width = (4 + Math.random() * 6) + "px";
+    ribbon.style.height = (80 + Math.random() * 120) + "px";
+
+    container.appendChild(ribbon);
+}
+</script>
+
+</body>
+</html>

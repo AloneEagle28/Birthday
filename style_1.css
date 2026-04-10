@@ -1,0 +1,99 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 80px;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+}
+
+/* Container */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+}
+
+/* Card */
+.card {
+    background: rgba(255, 192, 203, 0.95);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    position: relative;
+    z-index: 2;
+    backdrop-filter: blur(5px);
+}
+
+.cake {
+    font-size: 60px;
+    margin-bottom: 10px;
+}
+
+h1 {
+    font-family: 'Dancing Script', cursive;
+    color: white;
+    font-size: 2.8rem;
+    text-shadow: 0 0 10px rgba(255,255,255,0.8);
+}
+
+p {
+    font-family: 'Caveat', cursive;
+    color: #fff;
+    font-size: 1.4rem;
+}
+
+/* Button */
+.btn {
+    margin-top: 20px;
+    padding: 12px 25px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 25px;
+    background: #ff4d6d;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.btn:hover {
+    transform: scale(1.1);
+    background: #ff1a4d;
+}
+
+/* Ribbons background */
+.ribbons {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Single ribbon */
+.ribbon {
+    position: absolute;
+    top: -150px;
+    border-radius: 4px;
+    opacity: 0.85;
+    animation: fall linear infinite;
+    filter: blur(0.5px);
+}
+
+/* Animation */
+@keyframes fall {
+    0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+    }
+    100% {
+        transform: translateY(110vh) translateX(60px) rotate(360deg);
+    }
+}
